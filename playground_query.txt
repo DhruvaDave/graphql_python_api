@@ -1,0 +1,85 @@
+# This will use to write query and mutation for playground UI.
+# Write your query or mutation here
+query AllPosts {
+  listPosts {
+    success
+    errors
+    posts {
+      post_id
+      title
+      description
+      created_at
+    }
+  }
+}
+
+query SearchPosts {
+  searchPosts(searchString: "te") {
+    success
+    errors
+    posts {
+      post_id
+      title
+      description
+      created_at
+    }
+  }
+}
+
+query GetPost {
+  getPost(post_id: "1") {
+    post {
+      post_id
+      title
+      description
+      user_id_fk
+    }
+    users{
+      user_id
+      first_name
+    }
+    success
+    errors
+  }
+}
+
+mutation CreateNewPost {
+  createPost(title: "New Blog Post", description: "Some Description") {
+    post {
+      post_id
+      title
+      description
+      created_at
+    }
+    success
+    errors
+  }
+}
+
+mutation UpdatePost {
+  updatePost(
+    post_id: "3"
+    title: "Hello title"
+    description: "updated description"
+  ) {
+    post {
+      post_id
+      title
+      description
+    }
+    success
+    errors
+  }
+}
+
+mutation DeletePost {
+  deletePost(post_id:"2") {
+    post {
+      post_id
+      title
+      description
+    }
+    success
+    errors
+  }
+}

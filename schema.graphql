@@ -1,0 +1,43 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type TblPost {
+    post_id: ID!
+    title: String!
+    description: String!
+    created_at: String!
+    user_id_fk: ID!
+}
+
+type TblUser{
+    user_id: ID!
+    first_name: String!
+}
+
+type PostResult {
+    success: Boolean!
+    errors: [String]
+    post: TblPost
+    users: [TblUser]
+}
+
+type PostsResult {
+    success: Boolean!
+    errors: [String]
+    posts: [TblPost]
+}
+
+type Query {
+    listPosts: PostsResult!
+    getPost(post_id: ID!): PostResult!
+    searchPosts(searchString: String): PostsResult!
+}
+
+
+type Mutation {
+    createPost(title: String!, description: String!, created_at: String): PostResult!
+    updatePost(post_id: ID!, title: String, description: String): PostResult!
+    deletePost(post_id: ID): PostResult!
+}
